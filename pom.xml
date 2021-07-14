@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>eu.openanalytics.phaedra</groupId>
+	<artifactId>phaedra2-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>Phaedra2 Parent POM</name>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.5.RELEASE</version>
+	</parent>
+
+	<properties>
+		<phaedra2-commons.version>0.0.1-SNAPSHOT</phaedra2-commons.version>
+		<spring-boot.version>2.3.5.RELEASE</spring-boot.version>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>eu.openanalytics.phaedra</groupId>
+			<artifactId>phaedra2-commons</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+	</dependencies>
+		
+	<dependencyManagement>
+		<dependencies>
+			<!-- Spring Boot: Web using Undertow instead of Tomcat -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-boot.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			
+			<!-- Spring Boot: JDBC Data -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jdbc</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+			
+			<!-- Phaedra2 Commons -->
+			<dependency>
+				<groupId>eu.openanalytics.phaedra</groupId>
+				<artifactId>phaedra2-commons</artifactId>
+				<version>${phaedra2-commons.version}</version>
+			</dependency>
+			
+	        <!-- Test dependencies -->
+	        <dependency>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-test</artifactId>
+	            <version>${spring-boot.version}</version>
+	            <scope>test</scope>
+	            <exclusions>
+	                <exclusion>
+	                    <groupId>org.junit.vintage</groupId>
+	                    <artifactId>junit-vintage-engine</artifactId>
+	                </exclusion>
+	            </exclusions>
+	        </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>
