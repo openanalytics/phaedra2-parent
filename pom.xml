@@ -18,12 +18,18 @@
 	<properties>
 		<phaedra2-commons.version>0.0.1-SNAPSHOT</phaedra2-commons.version>
 		<spring-boot.version>2.3.5.RELEASE</spring-boot.version>
+		<aws.version>2.2.6.RELEASE</aws.version>
+		<spotify.docker.version>1.4.3</spotify.docker.version>
 	</properties>
 	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -68,6 +74,18 @@
 				<version>${phaedra2-commons.version}</version>
 			</dependency>
 			
+			<!-- Amazon AWS -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-aws</artifactId>
+				<version>${aws.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-aws-autoconfigure</artifactId>
+				<version>${aws.version}</version>
+			</dependency>
+			
 	        <!-- Test dependencies -->
 	        <dependency>
 	            <groupId>org.springframework.boot</groupId>
@@ -84,4 +102,24 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Allows building a Docker image -->
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>
+					<version>${spotify.docker.version}</version>
+					<executions>
+						<execution>
+							<id>default</id>
+							<goals>
+								<goal>build</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
