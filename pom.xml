@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>eu.openanalytics.phaedra</groupId>
 	<artifactId>phaedra2-parent</artifactId>
 	<packaging>pom</packaging>
@@ -23,7 +23,7 @@
 		<springdoc.version>1.5.9</springdoc.version>
 		<liquibase.version>4.4.3</liquibase.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -55,10 +55,10 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-test</artifactId>
+                </dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -75,12 +75,16 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
+                <dependency>
+                        <groupId>com.mattbertolini</groupId>
+                        <artifactId>liquibase-slf4j</artifactId>
+                </dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 		</dependency>
 	</dependencies>
-		
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- Spring dependencies -->
@@ -96,7 +100,7 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			
+
 			<!-- Spring Boot: JDBC Data -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -108,14 +112,14 @@
 				<artifactId>spring-boot-actuator</artifactId>
 				<version>${spring-boot.version}</version>
 			</dependency>
-			
+
 			<!-- Phaedra2 Commons -->
 			<dependency>
 				<groupId>eu.openanalytics.phaedra</groupId>
 				<artifactId>phaedra2-commons</artifactId>
 				<version>${phaedra2-commons.version}</version>
 			</dependency>
-			
+
 			<!-- Amazon AWS -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -155,6 +159,11 @@
 				<artifactId>liquibase-core</artifactId>
 				<version>${liquibase.version}</version>
 			</dependency>
+                        <dependency>
+                                <groupId>com.mattbertolini</groupId>
+                                <artifactId>liquibase-slf4j</artifactId>
+                                <version>4.0.0</version>
+                        </dependency>
 
 	        <!-- Test dependencies -->
 	        <dependency>
