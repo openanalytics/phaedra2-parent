@@ -1,199 +1,224 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>eu.openanalytics.phaedra</groupId>
-	<artifactId>phaedra2-parent</artifactId>
-	<packaging>pom</packaging>
-	<name>Phaedra2 Parent POM</name>
-	<version>0.0.1-SNAPSHOT</version>
+    <groupId>eu.openanalytics.phaedra</groupId>
+    <artifactId>phaedra2-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>Phaedra2 Parent POM</name>
+    <version>0.0.1-SNAPSHOT</version>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.3</version>
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.3</version>
+        <relativePath/>
+    </parent>
 
-	<properties>
-		<phaedra2-commons.version>0.0.1-SNAPSHOT</phaedra2-commons.version>
-		<spring-boot.version>2.5.3</spring-boot.version>
-		<aws.version>2.2.6.RELEASE</aws.version>
-		<spotify.docker.version>1.4.13</spotify.docker.version>
-		<springdoc.version>1.5.9</springdoc.version>
-		<liquibase.version>4.4.3</liquibase.version>
-	</properties>
+    <properties>
+        <phaedra2-commons.version>0.0.1-SNAPSHOT</phaedra2-commons.version>
+        <spring-boot.version>2.5.3</spring-boot.version>
+        <aws.version>2.2.6.RELEASE</aws.version>
+        <spotify.docker.version>1.4.13</spotify.docker.version>
+        <springdoc.version>1.5.9</springdoc.version>
+        <liquibase.version>4.4.3</liquibase.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-undertow</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-actuator</artifactId>
-		</dependency>
+    <repositories>
+        <!-- Maven queries repositories in the order that they are defined here.
+         Usually, the Maven Central repository is the last one in this order, because it's defined in the super POM.
+         This means that for all dependencies which are downloaded from Maven Central, the custom repositories are
+         queried first, which slows down the build a lot.
+         Therefore we add central as the first repository in this list.
+         This reduces the time to download dependencies on a fresh machine from ~20-30min to 1min
+         See: https://maven.apache.org/ref/3.6.3/maven-model-builder/super-pom.html for the origin of this configuration
+         -->
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>oa-nexus-snapshots</id>
+            <url>https://nexus.openanalytics.eu/repository/snapshots/</url>
+        </repository>
+    </repositories>
 
-		<dependency>
-			<groupId>eu.openanalytics.phaedra</groupId>
-			<artifactId>phaedra2-commons</artifactId>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
-                <dependency>
+        <dependency>
+            <groupId>eu.openanalytics.phaedra</groupId>
+            <artifactId>phaedra2-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper.extensions</groupId>
+            <artifactId>modelmapper-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mattbertolini</groupId>
+            <artifactId>liquibase-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring dependencies -->
+            <!-- Spring Boot: Web using Undertow instead of Tomcat -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <exclusion>
                         <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-test</artifactId>
-                </dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.modelmapper.extensions</groupId>
-			<artifactId>modelmapper-spring</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-		</dependency>
-                <dependency>
-                        <groupId>com.mattbertolini</groupId>
-                        <artifactId>liquibase-slf4j</artifactId>
-                </dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-		</dependency>
-	</dependencies>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- Spring dependencies -->
-			<!-- Spring Boot: Web using Undertow instead of Tomcat -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-web</artifactId>
-				<version>${spring-boot.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-starter-tomcat</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+            <!-- Spring Boot: JDBC Data -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jdbc</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-actuator</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
 
-			<!-- Spring Boot: JDBC Data -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-jdbc</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-actuator</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
+            <!-- Phaedra2 Commons -->
+            <dependency>
+                <groupId>eu.openanalytics.phaedra</groupId>
+                <artifactId>phaedra2-commons</artifactId>
+                <version>${phaedra2-commons.version}</version>
+            </dependency>
 
-			<!-- Phaedra2 Commons -->
-			<dependency>
-				<groupId>eu.openanalytics.phaedra</groupId>
-				<artifactId>phaedra2-commons</artifactId>
-				<version>${phaedra2-commons.version}</version>
-			</dependency>
+            <!-- Amazon AWS -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-aws</artifactId>
+                <version>${aws.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-aws-autoconfigure</artifactId>
+                <version>${aws.version}</version>
+            </dependency>
 
-			<!-- Amazon AWS -->
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-aws</artifactId>
-				<version>${aws.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-aws-autoconfigure</artifactId>
-				<version>${aws.version}</version>
-			</dependency>
+            <!-- Swagger dependencies -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
 
-			<!-- Swagger dependencies -->
-			<dependency>
-				<groupId>org.springdoc</groupId>
-				<artifactId>springdoc-openapi-ui</artifactId>
-				<version>${springdoc.version}</version>
-			</dependency>
+            <!-- Apache commons dependencies -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
 
-			<!-- Apache commons dependencies -->
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-collections4</artifactId>
-				<version>4.4</version>
-			</dependency>
+            <!-- Model mapper spring dependencies-->
+            <dependency>
+                <groupId>org.modelmapper.extensions</groupId>
+                <artifactId>modelmapper-spring</artifactId>
+                <version>2.4.2</version>
+            </dependency>
 
-			<!-- Model mapper spring dependencies-->
-			<dependency>
-				<groupId>org.modelmapper.extensions</groupId>
-				<artifactId>modelmapper-spring</artifactId>
-				<version>2.4.2</version>
-			</dependency>
+            <!-- Liquibase dependencies -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mattbertolini</groupId>
+                <artifactId>liquibase-slf4j</artifactId>
+                <version>4.0.0</version>
+            </dependency>
 
-			<!-- Liquibase dependencies -->
-			<dependency>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-core</artifactId>
-				<version>${liquibase.version}</version>
-			</dependency>
-                        <dependency>
-                                <groupId>com.mattbertolini</groupId>
-                                <artifactId>liquibase-slf4j</artifactId>
-                                <version>4.0.0</version>
-                        </dependency>
+            <!-- Test dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-	        <!-- Test dependencies -->
-	        <dependency>
-	            <groupId>org.springframework.boot</groupId>
-	            <artifactId>spring-boot-starter-test</artifactId>
-	            <version>${spring-boot.version}</version>
-	            <scope>test</scope>
-	        </dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<!-- Allows building a Docker image -->
-				<plugin>
-					<groupId>com.spotify</groupId>
-					<artifactId>dockerfile-maven-plugin</artifactId>
-					<version>${spotify.docker.version}</version>
-					<executions>
-						<execution>
-							<id>default</id>
-							<goals>
-								<goal>build</goal>
-								<goal>push</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Allows building a Docker image -->
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${spotify.docker.version}</version>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>push</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
