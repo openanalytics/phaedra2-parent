@@ -21,7 +21,7 @@
         <spring-boot.version>2.7.13</spring-boot.version>
         <aws.version>2.2.6.RELEASE</aws.version>
         <spotify.docker.version>1.4.13</spotify.docker.version>
-        <springdoc.version>1.5.9</springdoc.version>
+        <springdoc.version>1.6.12</springdoc.version>
         <liquibase.version>4.4.3</liquibase.version>
     </properties>
 
