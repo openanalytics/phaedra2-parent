@@ -20,7 +20,6 @@
         <phaedra2-commons.version>0.0.1-SNAPSHOT</phaedra2-commons.version>
         <spring-boot.version>2.7.13</spring-boot.version>
         <aws.version>2.2.6.RELEASE</aws.version>
-        <spotify.docker.version>1.4.13</spotify.docker.version>
         <springdoc.version>1.6.12</springdoc.version>
         <liquibase.version>4.4.3</liquibase.version>
     </properties>
@@ -261,28 +260,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Allows building a Docker image -->
-                <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>dockerfile-maven-plugin</artifactId>
-                    <version>${spotify.docker.version}</version>
-                    <executions>
-                        <execution>
-                            <id>default</id>
-                            <goals>
-                                <goal>build</goal>
-                                <goal>push</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 
     <distributionManagement>
         <snapshotRepository>
