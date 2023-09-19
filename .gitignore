@@ -1,3 +1,7 @@
 /.idea/
+
+# Eclipse IDE files
+/target/
+/.settings/
 /.project
-/phaedra2-parent.iml
+/.classpath
