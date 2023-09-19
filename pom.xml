@@ -319,6 +319,11 @@
 	            <version>${testcontainers.version}</version>
 	            <scope>test</scope>
 	        </dependency>
+			<dependency>
+	            <groupId>org.testcontainers</groupId>
+	            <artifactId>kafka</artifactId>
+	            <version>${testcontainers.version}</version>
+        	</dependency>
 	        <dependency>
 	            <groupId>org.junit.platform</groupId>
 	            <artifactId>junit-platform-launcher</artifactId>
@@ -362,6 +367,15 @@
 									</args>
 								</build>
 							</image>
+	                        <image>
+	                        	<name>${docker.imageName}.liquibase</name>
+	                            <build>
+	                                <dockerFile>${project.basedir}/Dockerfile.db</dockerFile>
+	                                <tags>
+	                                    <tag>${project.version}</tag>
+	                                </tags>
+	                            </build>
+	                        </image>
 						</images>
 					</configuration>
 					<executions>
@@ -416,9 +430,8 @@
 	                        <exclude>LICENSE_HEADER</exclude>
 	                        <exclude>README.md</exclude>
 	                        <exclude>.gitignore</exclude>
-	                        <exclude>Dockerfile</exclude>
-	                        <exclude>Dockerfile.app</exclude>
-	                        <exclude>Dockerfile.db</exclude>
+	                        <exclude>**/Dockerfile.app</exclude>
+	                        <exclude>**/Dockerfile.db</exclude>
 	                        <exclude>Jenkinsfile</exclude>
 	                    </excludes>
 	                </configuration>
