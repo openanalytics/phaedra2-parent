@@ -21,7 +21,7 @@
 		<java.version>16</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <phaedra2-commons.version>2.0.2-SNAPSHOT</phaedra2-commons.version>
+        <phaedra2-commons.version>2.0.2</phaedra2-commons.version>
         <spring-boot.version>2.7.13</spring-boot.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <aws.version>2.2.6.RELEASE</aws.version>
@@ -33,6 +33,7 @@
         <springdoc.version>1.6.12</springdoc.version>
         <liquibase.version>4.4.3</liquibase.version>
         <testcontainers.version>1.15.3</testcontainers.version>
+        <gitflow-maven.version>1.20.0</gitflow-maven.version>
     </properties>
 
     <repositories>
@@ -57,6 +58,10 @@
             <id>oa-nexus-snapshots</id>
             <url>https://nexus.openanalytics.eu/repository/snapshots/</url>
         </repository>
+        <repository>
+            <id>oa-nexus-releases</id>
+            <url>https://nexus.openanalytics.eu/repository/releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -73,6 +78,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+			<groupId>com.amashchenko.maven.plugin</groupId>
+            <artifactId>gitflow-maven-plugin</artifactId>
+            <version>${gitflow-maven.version}</version>
+        </dependency>
+        
         <!-- Spring Boot Starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -452,6 +463,12 @@
 	                    </execution>
 	                </executions>
 	            </plugin>
+	            
+			    <plugin>
+			        <groupId>com.amashchenko.maven.plugin</groupId>
+			        <artifactId>gitflow-maven-plugin</artifactId>
+			        <version>${gitflow-maven.version}</version>
+			    </plugin>
 	        </plugins>
 		</pluginManagement>
 	</build>
