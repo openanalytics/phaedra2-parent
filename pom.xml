@@ -33,7 +33,6 @@
         <springdoc.version>1.6.12</springdoc.version>
         <liquibase.version>4.4.3</liquibase.version>
         <testcontainers.version>1.15.3</testcontainers.version>
-<!--        <gitflow-maven.version>1.20.0</gitflow-maven.version>-->
     </properties>
 
     <repositories>
@@ -77,18 +76,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
-<!--        <dependency>-->
-<!--			<groupId>com.amashchenko.maven.plugin</groupId>-->
-<!--            <artifactId>gitflow-maven-plugin</artifactId>-->
-<!--            <version>${gitflow-maven.version}</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.codehaus.groovy</groupId>-->
-<!--                    <artifactId>groovy-all</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
 
         <!-- Spring Boot Starters -->
         <dependency>
@@ -180,12 +167,6 @@
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-        </dependency>
-
-        <!-- Groovy -->
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
         </dependency>
     </dependencies>
 
@@ -309,12 +290,6 @@
                 <groupId>com.mattbertolini</groupId>
                 <artifactId>liquibase-slf4j</artifactId>
                 <version>4.0.0</version>
-            </dependency>
-            <!-- Groovy -->
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-                <version>2.4.4</version>
             </dependency>
 
             <!-- Test dependencies -->
@@ -481,12 +456,6 @@
 	                    </execution>
 	                </executions>
 	            </plugin>
-
-<!--			    <plugin>-->
-<!--			        <groupId>com.amashchenko.maven.plugin</groupId>-->
-<!--			        <artifactId>gitflow-maven-plugin</artifactId>-->
-<!--			        <version>${gitflow-maven.version}</version>-->
-<!--			    </plugin>-->
 	        </plugins>
 		</pluginManagement>
 	</build>
