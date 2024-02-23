@@ -21,7 +21,7 @@
 		<java.version>16</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <phaedra2-commons.version>2.0.3-SNAPSHOT</phaedra2-commons.version>
+        <phaedra2-commons.version>2.0.3</phaedra2-commons.version>
         <spring-boot.version>2.7.13</spring-boot.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <aws.version>2.2.6.RELEASE</aws.version>
