@@ -33,6 +33,7 @@
         <springdoc.version>1.6.12</springdoc.version>
         <liquibase.version>4.4.3</liquibase.version>
         <testcontainers.version>1.15.3</testcontainers.version>
+        <gitflow-maven.version>1.21.0</gitflow-maven.version>
     </properties>
 
     <repositories>
@@ -456,6 +457,11 @@
 	                    </execution>
 	                </executions>
 	            </plugin>
+	            <plugin>
+			        <groupId>com.amashchenko.maven.plugin</groupId>
+			        <artifactId>gitflow-maven-plugin</artifactId>
+			        <version>${gitflow-maven.version}</version>
+			    </plugin>
 	        </plugins>
 		</pluginManagement>
 	</build>
