@@ -354,6 +354,28 @@
 	                </configuration>
 	            </plugin>
 
+			    <plugin>
+				    <groupId>org.codehaus.mojo</groupId>
+				    <artifactId>build-helper-maven-plugin</artifactId>
+				    <version>3.5.0</version>
+				    <executions>
+				        <execution>
+				            <phase>validate</phase>
+				            <goals>
+				                <goal>regex-property</goal>
+				            </goals>
+				            <configuration>
+				                <name>docker.imageNameSuffix</name>
+				                <value>${project.version}</value>
+				                <regex>[0-9]+.[0-9]+.[0-9]+(.*)</regex>
+				                <replacement>$1</replacement>
+				                <toLowerCase>true</toLowerCase>
+				                <failIfNoMatch>true</failIfNoMatch>
+				            </configuration>
+				        </execution>
+				    </executions>
+				</plugin>
+				
 	            <plugin>
 	                <groupId>io.fabric8</groupId>
 					<artifactId>docker-maven-plugin</artifactId>
@@ -361,7 +383,7 @@
 					<configuration>
 						<images>
 							<image>
-								<name>${docker.imageName}</name>
+								<name>${docker.imageName}${docker.imageNameSuffix}</name>
 								<build>
 									<dockerFile>${project.basedir}/Dockerfile.app</dockerFile>
 									<tags>
@@ -373,7 +395,7 @@
 								</build>
 							</image>
 	                        <image>
-	                        	<name>${docker.imageName}.liquibase</name>
+	                        	<name>${docker.imageName}.liquibase${docker.imageNameSuffix}</name>
 	                            <build>
 	                                <dockerFile>${project.basedir}/Dockerfile.db</dockerFile>
 	                                <tags>
@@ -457,6 +479,7 @@
 	                    </execution>
 	                </executions>
 	            </plugin>
+	            
 	            <plugin>
 			        <groupId>com.amashchenko.maven.plugin</groupId>
 			        <artifactId>gitflow-maven-plugin</artifactId>
