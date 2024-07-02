@@ -32,7 +32,7 @@
         <jacoco-maven.version>0.8.12</jacoco-maven.version>
         <mycila-maven.version>1.9.0</mycila-maven.version>
         <springdoc.version>1.6.12</springdoc.version>
-        <liquibase.version>4.4.3</liquibase.version>
+        <liquibase.version>4.28.0</liquibase.version>
         <testcontainers.version>1.15.3</testcontainers.version>
         <gitflow-maven.version>1.21.0</gitflow-maven.version>
     </properties>
