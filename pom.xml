@@ -29,7 +29,7 @@
         <spring-kafka.version>3.2.1</spring-kafka.version>
         <kafka-streams.version>3.3.1</kafka-streams.version>
         <fabric8-docker-maven.version>0.37.0</fabric8-docker-maven.version>
-        <jacoco-maven.version>0.8.7</jacoco-maven.version>
+        <jacoco-maven.version>0.8.12</jacoco-maven.version>
         <mycila-maven.version>1.9.0</mycila-maven.version>
         <springdoc.version>1.6.12</springdoc.version>
         <liquibase.version>4.4.3</liquibase.version>
