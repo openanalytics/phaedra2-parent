@@ -1,5 +1,9 @@
 apiVersion: v1
 kind: Pod
+metadata:
+  name: phaedra2-builder
+  labels:
+    ci: phaedra2-builder
 spec:
   volumes:
     - name: dockerconfig
@@ -16,4 +20,12 @@ spec:
        - name: dockerconfig
          mountPath: /root/.docker/config.json
          subPath: data
-
+     resources:
+       requests:
+         memory: "4Gi"
+         cpu: "1"
+         ephemeral-storage: "30Gi"
+       limits:
+         memory: "4Gi"
+         cpu: "1"
+         ephemeral-storage: "30Gi"

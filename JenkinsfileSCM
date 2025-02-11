@@ -1,6 +1,5 @@
 pipeline {
-
-    agent {
+	agent {
         kubernetes {
             yamlFile 'kubernetesPod.yaml'
             defaultContainer 'builder'
@@ -10,25 +9,36 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '3'))
     }
-
+    
+    parameters {
+        string(name: 'BUILD_TYPE', defaultValue: 'default')
+    }
 
     stages {
-
+        stage('Initialize') {
+		    when {
+			    branch 'master'
+                expression { params.BUILD_TYPE != 'product_release' }
+            }
+            steps {
+                script { currentBuild.result = 'ABORTED' }
+                error 'Build of the master branch can only be invoked as part of the product_release'
+            }
+	    }
         stage('Build') {
             steps {
                 container('builder') {
                     configFileProvider([configFile(fileId: 'maven-settings-rsb', variable: 'MAVEN_SETTINGS_RSB')]) {
-                        sh 'mvn -s $MAVEN_SETTINGS_RSB -U clean install -DskipTests -Ddockerfile.skip -Dmaven.repo.local=/home/jenkins/maven-repository'
+                        sh 'mvn -s $MAVEN_SETTINGS_RSB -B -U clean install -DskipTests -Ddockerfile.skip -Dmaven.repo.local=/home/jenkins/maven-repository'
                     }
                 }
             }
         }
-
         stage("Deploy to Nexus") {
             steps {
                 container('builder') {
                     configFileProvider([configFile(fileId: 'maven-settings-rsb', variable: 'MAVEN_SETTINGS_RSB')]) {
-                        sh 'mvn -s $MAVEN_SETTINGS_RSB deploy -DskipTests -Ddockerfile.skip -Dmaven.repo.local=/home/jenkins/maven-repository'
+                        sh 'mvn -s $MAVEN_SETTINGS_RSB -B deploy -DskipTests -Ddockerfile.skip -Dmaven.repo.local=/home/jenkins/maven-repository'
                     }
                 }
             }
