@@ -35,6 +35,7 @@ pipeline {
             }
         }
         stage("Deploy to Nexus") {
+            when { anyOf { branch 'master'; branch 'develop' } }
             steps {
                 container('builder') {
                     configFileProvider([configFile(fileId: 'maven-settings-rsb', variable: 'MAVEN_SETTINGS_RSB')]) {
